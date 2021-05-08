@@ -5,6 +5,8 @@ It is an demo small application of Product inventory management.
 
 To RUN THE PROJECT FOLLOW THE STEP BELOW
 
+Download the repository in your local computer
+
 Run <h3><b>npm install</b></h3>
 
 Then After installation of all node modules
