@@ -5,7 +5,9 @@ It is an demo small application of Product inventory management.
 
 To RUN THE PROJECT FOLLOW THE STEP BELOW
 
-#Run npm install
+Run <h3><b>npm install</b></h3>
 
-#run the command ng serve
+Then After installation of all node modules
+
+Run the command <h3><b>ng serve</b></h3>
 
