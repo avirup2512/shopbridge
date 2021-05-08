@@ -1,0 +1,13 @@
+.productImageDisplay img {
+  max-width: 50%;
+}
+.productImageDisplay {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+.createSection {
+  background: #fff;
+  padding: 15px;
+}

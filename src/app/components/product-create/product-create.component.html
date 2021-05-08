@@ -1,0 +1,93 @@
+<div class="container">   
+            <div class="section mt-3">
+                <ng-container *ngIf="inProductEditPage; else inCreatePage">
+                    <h3>Edit product</h3>
+                </ng-container>
+                <ng-template #inCreatePage>
+                    <h3>Create product</h3>
+                </ng-template>
+                <hr>
+            </div>
+            <div class="createSection section mt-3 mb-3">
+                <form [formGroup]="createForm">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Product name</mat-label>
+                                <input matInput placeholder="Enter Product Name" formControlName="name">
+                                <mat-error>{{getErrorMessage('name')}}</mat-error>
+                            </mat-form-field>
+                        </div>                        
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Product Price</mat-label>
+                                <input matInput type="number" placeholder="Enter Product Price" formControlName="price">
+                                <mat-error>{{getErrorMessage('price')}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Product Description</mat-label>
+                                <textarea matInput placeholder="Enter Product Description" formControlName="description"> </textarea>
+                                <mat-error>{{getErrorMessage('description')}}</mat-error>
+                            </mat-form-field>
+                        </div>                      
+                        <div class="col-sm-6 col-md-6 col-lg-6 mt-4 mb-4">
+                                <label>Product stock:</label>
+                                <mat-radio-group formControlName="stock">
+                                    <mat-radio-button class="ml-2" value="instock">In Stock</mat-radio-button>
+                                    <mat-radio-button class="ml-2" value="outofstock">Out of Stock</mat-radio-button>
+                                </mat-radio-group>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 mt-4 mb-4">
+                            <mat-checkbox (change)="changeHasOffer($event)" [disabled]="validateHasOfferCheckbox()" class="example-margin" formControlName="hasOffer">Has Offer</mat-checkbox>
+                            <ng-container *ngIf="hasOffer()">
+                                <p>Actual Price: {{getPrice()}} </p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Product Offered Price</mat-label>
+                                    <input [disabled]="validateHasOfferCheckbox()" type="number" matInput formControlName="offeredPrice">
+                                    <mat-error>{{getErrorMessage('offeredPrice')}}</mat-error>
+                                </mat-form-field>
+                                <p>Percentage off: {{(percentageOff)}}%</p>
+                            </ng-container>
+                        </div>                      
+                        <div class="col-sm-6 col-md-6 col-lg-6">                          
+                            <input (change)="changeImage($event)" type="file" class="d-none" id="image" formControlName="image">
+                            <label for="image">
+                                <button (click)="uploadImage($event)" mat-mini-fab color="primary">
+                                    <mat-icon>upload</mat-icon>
+                                </button>
+                                <span class="ml-3">
+                                    <ng-container *ngIf="productImageName == ''; else  hsImageName">
+                                        Upload Image
+                                    </ng-container> 
+                                    <ng-template #hsImageName>
+                                        {{productImageName}}
+                                    </ng-template>  
+                                </span>
+                                <button *ngIf="productImageName !== ''" (click)="removeImage($event)" mat-mini-fab color="warn">
+                                        <mat-icon>delete</mat-icon>
+                                </button>
+                            </label>                            
+                        </div>                       
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="productImageDisplay">
+                                <ng-container *ngIf="productImageSrc !== ''; else noImage">
+                                    <img src="{{productImageSrc}}">
+                                </ng-container>
+                                <ng-template #noImage>
+                                    <img src="assets/image/no-image.png">
+                                </ng-template>
+                                <img>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 mt-5 mb-5">
+                            <div class="float-right">
+                                <button mat-raised-button color="warn" (click)="cancelCreation()">Cancel</button>
+                                <button mat-raised-button class="ml-2" (click)="submitForm()" color="primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>      
+</div>

@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="section mt-3">
+        <app-filter (sortingEmit)="sortingEmit($event)"></app-filter>
+    </div>
+    <div class="section mt-3">
+        <app-product-grid [products]="products"></app-product-grid>
+    </div>
+</div>

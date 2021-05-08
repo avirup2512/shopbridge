@@ -1,0 +1,36 @@
+.grid .image {
+  padding: 15px;
+}
+.grid .image img {
+  max-width: 100%;
+}
+.grid {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.gridContainer {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 0px 1px 0px;
+  color: #ccc;
+}
+.gridContainer p {
+  color: #000;
+}
+.gridContainer h4 {
+  color: #000;
+}
+.stockLabel {
+  position: absolute;
+  top: 12px;
+  left: 13px;
+}
+.stockLabel .label {
+  border-radius: 0px;
+  padding: 5px;
+  font-size: 10px;
+}
+.stockLabel .label.success {
+  background-color: #64dd17;
+  color: #000;
+}

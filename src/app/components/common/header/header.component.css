@@ -1,0 +1,24 @@
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+form > * {
+  margin: 5px 0;
+}
+
+.banner {
+  background: #1e88e5;
+  padding: 10px;
+}
+.searchForm {
+  display: block;
+  margin: 0 auto;
+}

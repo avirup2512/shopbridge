@@ -1,0 +1,57 @@
+<div class="row">
+    <div *ngFor="let product of products_ | paginate: { itemsPerPage: 2, currentPage: this.currentPage }" class="col-md-4 grid">
+        <div class="gridContainer">
+            <div class="image">
+                <ng-container *ngIf="product.image !== '';else noImage">
+                    <img src="{{product.image}}">
+                </ng-container>
+                <ng-template #noImage>
+                        <img src="assets/image/no-image.png">
+                </ng-template>
+            </div>
+            <hr class="mt-0 mb-0">
+            <div class="desc pl-3 pr-3 pb-0 pt-0">
+                <h4 class="mb-0 text-center  p-2">{{product.name}}</h4>
+                <hr class="mt-1 mb-1">
+                <p class="mt-2">
+                    <ng-container *ngIf="product.description.length > 20; else normalDesc">
+                        {{product.description.slice(0, 20)}}...
+                    </ng-container>
+                    <ng-template #normalDesc>
+                        {{product.description}}
+                    </ng-template>
+                </p>
+                <p class="text-center mb-0"><b>${{product.price}}</b></p>
+            </div>
+            <hr class="mb-0">
+            <div class="action p-3">
+                <div class="float-right">
+                    <button (click)="cloneProduct(product.id)" mat-mini-fab color="primary">
+                        <mat-icon>file_copy</mat-icon>
+                    </button>
+                    <button (click)="editProduct(product.id)" mat-mini-fab color="primary">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button (click)="deleteProduct(product.id)" mat-mini-fab color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <mat-chip-list class="stockLabel" >
+            <mat-chip *ngIf="product.inStock == 'outofstock'" class="label" color="warn" selected>Out of stock</mat-chip>
+            <mat-chip *ngIf="product.hasOffer" class="label success" color="success" selected>{{product.percentageOff}}% off</mat-chip>
+        </mat-chip-list>
+    </div>
+    <div class="col-md-12" *ngIf="products_.length == 0">
+        <p>There are no products in list.Please add product.</p>
+        <hr class="mt-4">
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-12 pagination_">
+        <div class="float-right">
+            <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+        </div>
+    </div>
+</div>
